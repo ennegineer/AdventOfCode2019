@@ -31,8 +31,9 @@ def PartOne():
             continue
 
         if one_data[i] == 1:
-
-            calculator = one_data[i+1] + one_data[i+2]
+            calc1 = one_data[i+1]
+            calc2 = one_data[i+2]
+            calculator = one_data[calc1] + one_data[calc2]
             pos = one_data[i+3]
             # print(f'calculator: {calculator}')
             # print(one_data[3])
@@ -42,8 +43,9 @@ def PartOne():
             # print(f'position is now {i}')
 
         elif one_data[i] == 2:
-
-            calculator = one_data[i+1] * one_data[i+2]
+            calc1 = one_data[i+1]
+            calc2 = one_data[i+2]
+            calculator = one_data[calc1] * one_data[calc2]
             pos = one_data[i+3]
             # print(f'calculator: {calculator}')
             # print(one_data[3])
@@ -60,5 +62,7 @@ def PartOne():
             print(f'error: one_data[i] is {one_data[i]}')
 
 PartOne()
-# 160 is too low.
+# 6327510 is correct for part one!
+
+
 
