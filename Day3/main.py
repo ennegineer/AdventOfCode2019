@@ -64,17 +64,10 @@ find_path(wire2_directions, wire2_path)
 wire1_set = set(map(tuple, wire1_path))
 wire2_set = set(map(tuple, wire2_path))
 
-# intersections = []
-
 intersections = wire1_set.intersection(wire2_set)
-
-# for item in wire1_path:
-#     if item in wire2_path:
-#         intersections.append(item)
 
 # Remove the central port
 intersections.remove((0,0))
-print(intersections)
 
 # x + y = distance from central port. find the shortest distance.
 closest_intersection = []
@@ -82,3 +75,31 @@ for item in intersections:
     closest_intersection.append([abs(item[0]) + abs(item[1])])
 
 print(min(closest_intersection))
+
+# For part two, we want to instead find the intersection where the sum of both wires' steps is lowest.
+
+# First, get the format of the list of intersections (0,0) to match the wire path lists [0,0]
+intersections_conversion = list(intersections)
+intersections_list = []
+for coord in list(intersections_conversion):
+    intersections_list.append([coord[0], coord[1]])
+
+
+def find_distances():
+    dist = []
+    for coordpair in intersections_list:
+
+        for i, item in enumerate(wire1_path):
+            if item == coordpair:
+                points_1 = i
+                break
+        for i, item in enumerate(wire2_path):
+            if item == coordpair:
+                points_2 = i
+                break
+        new_dist = int(points_1)+int(points_2)
+        dist.append(new_dist)
+    print(min(dist))
+
+find_distances()
+# 101956 is correct!
