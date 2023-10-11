@@ -18,12 +18,13 @@ possibilities = 746326 - 264360
 
 import itertools
 
-def PartOne():
+def Passwords():
     
     for password in range(264360, 746326): #end with 746326
         # skip any with no repeating numbers
         repeat = [len(list(group)) for key, group in itertools.groupby(str(password))]
-        if max(repeat) > 1:
+        # if max(repeat) > 1:   # (this was the statement for part one)
+        if 2 in repeat:         # Updated criteria for part two
             # next, inspect each password digit by digit...
             digits = [int(i) for i in str(password)]
             increase = [1 if digits[i] < digits[i+1] else -1 if digits[i] > digits[i+1] else 0 for i in range(len(digits)-1)]
@@ -32,7 +33,10 @@ def PartOne():
                 possible_password = ''.join([str(x) for x in digits])
                 possible_passwords.append(possible_password)
  
-PartOne()
+Passwords()
 print(len(set(possible_passwords)))
 print(possibilities)
 # 945 is correct!
+
+# Part Two: same criteria as part one, but also the repeated digits cannot be part of a larger group.
+# If there are more than 2 of a matching digit, there needs to be another set of just 2.
